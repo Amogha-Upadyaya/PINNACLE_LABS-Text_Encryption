@@ -17,17 +17,19 @@ def decrypt(key, ciphertext):
     decrypted_data = unpad(cipher.decrypt(ciphertext), AES.block_size)
     return decrypted_data.decode()
 
-if __name__ == "__main__":
-    choice = input("Choose operation for AES (encrypt/decrypt): ").strip().lower()
-    key = input("Enter AES key (16/24/32 bytes): ").encode()
-    
-    if choice == "encrypt":
-        plaintext = input("Enter plaintext for AES encryption: ")
-        ciphertext = encrypt(key, plaintext)
-        print("Encrypted:", b64encode(ciphertext).decode())
-    elif choice == "decrypt":
-        encrypted_text = b64decode(input("Enter ciphertext for AES decryption: "))
-        decrypted_text = decrypt(key, encrypted_text)
-        print("Decrypted:", decrypted_text)
-    else:
-        print("Invalid choice")
+def aes_menu():
+    while True:
+        choice = input("Choose operation for AES (encrypt/decrypt/quit): ").strip().lower()
+        if choice == "quit":
+            break
+        key = input("Enter AES key (16/24/32 bytes): ").encode()
+        if choice == "encrypt":
+            plaintext = input("Enter plaintext for AES encryption: ")
+            ciphertext = encrypt(key, plaintext)
+            print("Encrypted:", b64encode(ciphertext).decode())
+        elif choice == "decrypt":
+            encrypted_text = b64decode(input("Enter ciphertext for AES decryption: "))
+            decrypted_text = decrypt(key, encrypted_text)
+            print("Decrypted:", decrypted_text)
+        else:
+            print("Invalid choice")
