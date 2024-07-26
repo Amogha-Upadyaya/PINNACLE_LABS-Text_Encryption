@@ -17,13 +17,13 @@ def decrypt(key, ciphertext):
     decrypted_data = unpad(cipher.decrypt(ciphertext), AES.block_size)
     return decrypted_data.decode()
 
-# Example usage:
 if __name__ == "__main__":
-    key = b'Sixteen byte key'  # AES key must be either 16, 24, or 32 bytes long
-    plaintext = "Hello, AES encryption and decryption!"
+    key = input("Enter AES key (16/24/32 bytes): ").encode()
+    plaintext = input("Enter plaintext for AES encryption: ")
     
     ciphertext = encrypt(key, plaintext)
     print("Encrypted:", b64encode(ciphertext).decode())
     
-    decrypted_text = decrypt(key, ciphertext)
+    encrypted_text = b64decode(input("Enter ciphertext for AES decryption: "))
+    decrypted_text = decrypt(key, encrypted_text)
     print("Decrypted:", decrypted_text)

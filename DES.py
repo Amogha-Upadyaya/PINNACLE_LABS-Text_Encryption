@@ -17,13 +17,13 @@ def decrypt(key, ciphertext):
     decrypted_data = unpad(cipher.decrypt(ciphertext), DES.block_size)
     return decrypted_data.decode()
 
-# Example usage:
 if __name__ == "__main__":
-    key = b'8bytekey'  # DES key must be exactly 8 bytes long
-    plaintext = "Hello, DES encryption and decryption!"
+    key = input("Enter DES key (8 bytes): ").encode()
+    plaintext = input("Enter plaintext for DES encryption: ")
     
     ciphertext = encrypt(key, plaintext)
     print("Encrypted:", b64encode(ciphertext).decode())
     
-    decrypted_text = decrypt(key, ciphertext)
+    encrypted_text = b64decode(input("Enter ciphertext for DES decryption: "))
+    decrypted_text = decrypt(key, encrypted_text)
     print("Decrypted:", decrypted_text)

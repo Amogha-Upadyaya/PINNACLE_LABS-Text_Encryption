@@ -20,20 +20,22 @@ def decrypt(private_key, ciphertext):
     decrypted_data = cipher.decrypt(b64decode(ciphertext))
     return decrypted_data.decode()
 
-# Example usage:
 if __name__ == "__main__":
-    private_key, public_key = generate_keys()
+    generate_keys_option = input("Generate new RSA keys? (yes/no): ").strip().lower()
+    if generate_keys_option == "yes":
+        private_key, public_key = generate_keys()
+        print("Public Key:")
+        print(public_key.decode())
+        print("\nPrivate Key:")
+        print(private_key.decode())
+    else:
+        private_key = input("Enter your RSA private key: ").encode()
+        public_key = input("Enter your RSA public key: ").encode()
     
-    print("Public Key:")
-    print(public_key.decode())
-    print("\nPrivate Key:")
-    print(private_key.decode())
-    
-    plaintext = "Hello, RSA encryption and decryption!"
-    print("\nPlaintext:", plaintext)
-    
+    plaintext = input("Enter plaintext for RSA encryption: ")
     ciphertext = encrypt(public_key, plaintext)
     print("Encrypted:", ciphertext)
     
-    decrypted_text = decrypt(private_key, ciphertext)
+    encrypted_text = input("Enter ciphertext for RSA decryption: ")
+    decrypted_text = decrypt(private_key, encrypted_text)
     print("Decrypted:", decrypted_text)
