@@ -46,4 +46,3 @@ def aes_menu():
                 print("Decrypted:", decrypted_text)
         else:
             print("Invalid choice")
-

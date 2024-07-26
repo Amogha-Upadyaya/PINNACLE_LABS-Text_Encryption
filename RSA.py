@@ -32,6 +32,17 @@ def decrypt(private_key, ciphertext):
         print(f"Error during decryption: {e}")
         return None
 
+def read_multiline_input(prompt):
+    print(prompt)
+    lines = []
+    while True:
+        line = input()
+        if line:
+            lines.append(line)
+        else:
+            break
+    return "\n".join(lines)
+
 def rsa_menu():
     while True:
         choice = input("Choose operation for RSA (generate_keys/encrypt/decrypt/quit): ").strip().lower()
@@ -45,17 +56,16 @@ def rsa_menu():
                 print("\nPrivate Key:")
                 print(private_key.decode())
         elif choice == "encrypt":
-            public_key = input("Enter RSA public key: ").encode()
+            public_key = read_multiline_input("Enter RSA public key:")
             plaintext = input("Enter plaintext for RSA encryption: ")
-            ciphertext = encrypt(public_key, plaintext)
+            ciphertext = encrypt(public_key.encode(), plaintext)
             if ciphertext:
                 print("Encrypted:", ciphertext)
         elif choice == "decrypt":
-            private_key = input("Enter RSA private key: ").encode()
+            private_key = read_multiline_input("Enter RSA private key:")
             encrypted_text = input("Enter ciphertext for RSA decryption: ")
-            decrypted_text = decrypt(private_key, encrypted_text)
+            decrypted_text = decrypt(private_key.encode(), encrypted_text)
             if decrypted_text:
                 print("Decrypted:", decrypted_text)
         else:
             print("Invalid choice")
-
