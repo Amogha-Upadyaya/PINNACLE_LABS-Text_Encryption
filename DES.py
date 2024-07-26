@@ -18,12 +18,16 @@ def decrypt(key, ciphertext):
     return decrypted_data.decode()
 
 if __name__ == "__main__":
+    choice = input("Choose operation for DES (encrypt/decrypt): ").strip().lower()
     key = input("Enter DES key (8 bytes): ").encode()
-    plaintext = input("Enter plaintext for DES encryption: ")
     
-    ciphertext = encrypt(key, plaintext)
-    print("Encrypted:", b64encode(ciphertext).decode())
-    
-    encrypted_text = b64decode(input("Enter ciphertext for DES decryption: "))
-    decrypted_text = decrypt(key, encrypted_text)
-    print("Decrypted:", decrypted_text)
+    if choice == "encrypt":
+        plaintext = input("Enter plaintext for DES encryption: ")
+        ciphertext = encrypt(key, plaintext)
+        print("Encrypted:", b64encode(ciphertext).decode())
+    elif choice == "decrypt":
+        encrypted_text = b64decode(input("Enter ciphertext for DES decryption: "))
+        decrypted_text = decrypt(key, encrypted_text)
+        print("Decrypted:", decrypted_text)
+    else:
+        print("Invalid choice")

@@ -21,21 +21,23 @@ def decrypt(private_key, ciphertext):
     return decrypted_data.decode()
 
 if __name__ == "__main__":
-    generate_keys_option = input("Generate new RSA keys? (yes/no): ").strip().lower()
-    if generate_keys_option == "yes":
+    choice = input("Choose operation for RSA (generate_keys/encrypt/decrypt): ").strip().lower()
+    
+    if choice == "generate_keys":
         private_key, public_key = generate_keys()
         print("Public Key:")
         print(public_key.decode())
         print("\nPrivate Key:")
         print(private_key.decode())
+    elif choice == "encrypt":
+        public_key = input("Enter RSA public key: ").encode()
+        plaintext = input("Enter plaintext for RSA encryption: ")
+        ciphertext = encrypt(public_key, plaintext)
+        print("Encrypted:", ciphertext)
+    elif choice == "decrypt":
+        private_key = input("Enter RSA private key: ").encode()
+        encrypted_text = input("Enter ciphertext for RSA decryption: ")
+        decrypted_text = decrypt(private_key, encrypted_text)
+        print("Decrypted:", decrypted_text)
     else:
-        private_key = input("Enter your RSA private key: ").encode()
-        public_key = input("Enter your RSA public key: ").encode()
-    
-    plaintext = input("Enter plaintext for RSA encryption: ")
-    ciphertext = encrypt(public_key, plaintext)
-    print("Encrypted:", ciphertext)
-    
-    encrypted_text = input("Enter ciphertext for RSA decryption: ")
-    decrypted_text = decrypt(private_key, encrypted_text)
-    print("Decrypted:", decrypted_text)
+        print("Invalid choice")
