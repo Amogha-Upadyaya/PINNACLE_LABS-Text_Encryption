@@ -7,10 +7,23 @@ def generate_keys():
         key = RSA.generate(2048)
         private_key = key.export_key()
         public_key = key.publickey().export_key()
+        with open("rsa_private_key.pem", "wb") as prv_file:
+            prv_file.write(private_key)
+        with open("rsa_public_key.pem", "wb") as pub_file:
+            pub_file.write(public_key)
+        print("Keys have been saved to 'rsa_private_key.pem' and 'rsa_public_key.pem'")
         return private_key, public_key
     except Exception as e:
         print(f"Error generating keys: {e}")
         return None, None
+
+def read_key_from_file(file_path):
+    try:
+        with open(file_path, "rb") as key_file:
+            return key_file.read()
+    except Exception as e:
+        print(f"Error reading key from file: {e}")
+        return None
 
 def encrypt(public_key, plaintext):
     try:
@@ -32,40 +45,26 @@ def decrypt(private_key, ciphertext):
         print(f"Error during decryption: {e}")
         return None
 
-def read_multiline_input(prompt):
-    print(prompt)
-    lines = []
-    while True:
-        line = input()
-        if line:
-            lines.append(line)
-        else:
-            break
-    return "\n".join(lines)
-
 def rsa_menu():
     while True:
         choice = input("Choose operation for RSA (generate_keys/encrypt/decrypt/quit): ").strip().lower()
         if choice == "quit":
             break
         if choice == "generate_keys":
-            private_key, public_key = generate_keys()
-            if private_key and public_key:
-                print("Public Key:")
-                print(public_key.decode())
-                print("\nPrivate Key:")
-                print(private_key.decode())
+            generate_keys()
         elif choice == "encrypt":
-            public_key = read_multiline_input("Enter RSA public key:")
-            plaintext = input("Enter plaintext for RSA encryption: ")
-            ciphertext = encrypt(public_key.encode(), plaintext)
-            if ciphertext:
-                print("Encrypted:", ciphertext)
+            public_key = read_key_from_file("rsa_public_key.pem")
+            if public_key:
+                plaintext = input("Enter plaintext for RSA encryption: ")
+                ciphertext = encrypt(public_key, plaintext)
+                if ciphertext:
+                    print("Encrypted:", ciphertext)
         elif choice == "decrypt":
-            private_key = read_multiline_input("Enter RSA private key:")
-            encrypted_text = input("Enter ciphertext for RSA decryption: ")
-            decrypted_text = decrypt(private_key.encode(), encrypted_text)
-            if decrypted_text:
-                print("Decrypted:", decrypted_text)
+            private_key = read_key_from_file("rsa_private_key.pem")
+            if private_key:
+                encrypted_text = input("Enter ciphertext for RSA decryption: ")
+                decrypted_text = decrypt(private_key, encrypted_text)
+                if decrypted_text:
+                    print("Decrypted:", decrypted_text)
         else:
             print("Invalid choice")
