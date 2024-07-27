@@ -11,7 +11,7 @@ def encrypt(key, plaintext):
         ciphertext = cipher.encrypt(padded_data)
         return iv + ciphertext
     except Exception as e:
-        print(f"Error during encryption: {e}")
+        print(f"\nError during encryption: {e}")
         return None
 
 def decrypt(key, ciphertext):
@@ -22,27 +22,27 @@ def decrypt(key, ciphertext):
         decrypted_data = unpad(cipher.decrypt(ciphertext), DES.block_size)
         return decrypted_data.decode()
     except Exception as e:
-        print(f"Error during decryption: {e}")
+        print(f"\nError during decryption: {e}")
         return None
 
 def des_menu():
     while True:
-        choice = input("Choose operation for DES (encrypt/decrypt/quit): ").strip().lower()
+        choice = input("\nChoose operation for DES (encrypt/decrypt/quit): ").strip().lower()
         if choice == "quit":
             break
-        key = input("Enter DES key (8 bytes): ").encode()
+        key = input("\nEnter DES key (8 bytes): ").encode()
         if len(key) != 8:
-            print("Invalid key length! Key must be 8 bytes long.")
+            print("\nInvalid key length! Key must be 8 bytes long.")
             continue
         if choice == "encrypt":
-            plaintext = input("Enter plaintext for DES encryption: ")
+            plaintext = input("\nEnter plaintext for DES encryption: ")
             ciphertext = encrypt(key, plaintext)
             if ciphertext:
-                print("Encrypted:", b64encode(ciphertext).decode())
+                print("\nEncrypted:", b64encode(ciphertext).decode())
         elif choice == "decrypt":
-            encrypted_text = b64decode(input("Enter ciphertext for DES decryption: "))
+            encrypted_text = b64decode(input("\nEnter ciphertext for DES decryption: "))
             decrypted_text = decrypt(key, encrypted_text)
             if decrypted_text:
-                print("Decrypted:", decrypted_text)
+                print("\nDecrypted:", decrypted_text)
         else:
-            print("Invalid choice")
+            print("\nInvalid choice")

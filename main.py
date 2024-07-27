@@ -4,7 +4,7 @@ from RSA import rsa_menu
 
 def main_menu():
     while True:
-        algorithm = input("Choose algorithm (AES/DES/RSA/quit): ").strip().upper()
+        algorithm = input("\nChoose algorithm (AES/DES/RSA/quit): ").strip().upper()
         if algorithm == "QUIT":
             break
         elif algorithm == "AES":

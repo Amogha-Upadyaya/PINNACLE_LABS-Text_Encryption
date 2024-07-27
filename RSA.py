@@ -11,10 +11,10 @@ def generate_keys():
             prv_file.write(private_key)
         with open("rsa_public_key.pem", "wb") as pub_file:
             pub_file.write(public_key)
-        print("Keys have been saved to 'rsa_private_key.pem' and 'rsa_public_key.pem'")
+        print("\nKeys have been saved to 'rsa_private_key.pem' and 'rsa_public_key.pem'")
         return private_key, public_key
     except Exception as e:
-        print(f"Error generating keys: {e}")
+        print(f"\nError generating keys: {e}")
         return None, None
 
 def read_key_from_file(file_path):
@@ -22,7 +22,7 @@ def read_key_from_file(file_path):
         with open(file_path, "rb") as key_file:
             return key_file.read()
     except Exception as e:
-        print(f"Error reading key from file: {e}")
+        print(f"\nError reading key from file: {e}")
         return None
 
 def encrypt(public_key, plaintext):
@@ -32,7 +32,7 @@ def encrypt(public_key, plaintext):
         ciphertext = cipher.encrypt(plaintext.encode())
         return b64encode(ciphertext).decode()
     except Exception as e:
-        print(f"Error during encryption: {e}")
+        print(f"\nError during encryption: {e}")
         return None
 
 def decrypt(private_key, ciphertext):
@@ -42,12 +42,12 @@ def decrypt(private_key, ciphertext):
         decrypted_data = cipher.decrypt(b64decode(ciphertext))
         return decrypted_data.decode()
     except Exception as e:
-        print(f"Error during decryption: {e}")
+        print(f"\nError during decryption: {e}")
         return None
 
 def rsa_menu():
     while True:
-        choice = input("Choose operation for RSA (generate_keys/encrypt/decrypt/quit): ").strip().lower()
+        choice = input("\nChoose operation for RSA (generate_keys/encrypt/decrypt/quit): ").strip().lower()
         if choice == "quit":
             break
         if choice == "generate_keys":
@@ -55,16 +55,16 @@ def rsa_menu():
         elif choice == "encrypt":
             public_key = read_key_from_file("rsa_public_key.pem")
             if public_key:
-                plaintext = input("Enter plaintext for RSA encryption: ")
+                plaintext = input("\nEnter plaintext for RSA encryption: ")
                 ciphertext = encrypt(public_key, plaintext)
                 if ciphertext:
-                    print("Encrypted:", ciphertext)
+                    print("\nEncrypted:", ciphertext)
         elif choice == "decrypt":
             private_key = read_key_from_file("rsa_private_key.pem")
             if private_key:
-                encrypted_text = input("Enter ciphertext for RSA decryption: ")
+                encrypted_text = input("\nEnter ciphertext for RSA decryption: ")
                 decrypted_text = decrypt(private_key, encrypted_text)
                 if decrypted_text:
-                    print("Decrypted:", decrypted_text)
+                    print("\nDecrypted:", decrypted_text)
         else:
-            print("Invalid choice")
+            print("\nInvalid choice")
