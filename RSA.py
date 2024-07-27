@@ -55,14 +55,14 @@ def rsa_menu():
         elif choice == "encrypt":
             public_key = read_key_from_file("rsa_public_key.pem")
             if public_key:
-                plaintext = input("\nEnter plaintext for RSA encryption: ")
+                plaintext = input("Enter plaintext for RSA encryption: ")
                 ciphertext = encrypt(public_key, plaintext)
                 if ciphertext:
                     print("\nEncrypted:", ciphertext)
         elif choice == "decrypt":
             private_key = read_key_from_file("rsa_private_key.pem")
             if private_key:
-                encrypted_text = input("\nEnter ciphertext for RSA decryption: ")
+                encrypted_text = input("Enter ciphertext for RSA decryption: ")
                 decrypted_text = decrypt(private_key, encrypted_text)
                 if decrypted_text:
                     print("\nDecrypted:", decrypted_text)

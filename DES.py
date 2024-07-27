@@ -30,17 +30,17 @@ def des_menu():
         choice = input("\nChoose operation for DES (encrypt/decrypt/quit): ").strip().lower()
         if choice == "quit":
             break
-        key = input("\nEnter DES key (8 bytes): ").encode()
+        key = input("Enter DES key (8 bytes): ").encode()
         if len(key) != 8:
             print("\nInvalid key length! Key must be 8 bytes long.")
             continue
         if choice == "encrypt":
-            plaintext = input("\nEnter plaintext for DES encryption: ")
+            plaintext = input("Enter plaintext for DES encryption: ")
             ciphertext = encrypt(key, plaintext)
             if ciphertext:
                 print("\nEncrypted:", b64encode(ciphertext).decode())
         elif choice == "decrypt":
-            encrypted_text = b64decode(input("\nEnter ciphertext for DES decryption: "))
+            encrypted_text = b64decode(input("Enter ciphertext for DES decryption: "))
             decrypted_text = decrypt(key, encrypted_text)
             if decrypted_text:
                 print("\nDecrypted:", decrypted_text)

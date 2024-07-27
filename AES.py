@@ -30,17 +30,17 @@ def aes_menu():
         choice = input("\nChoose operation for AES (encrypt/decrypt/quit): ").strip().lower()
         if choice == "quit":
             break
-        key = input("\nEnter AES key (16/24/32 bytes): ").encode()
+        key = input("Enter AES key (16/24/32 bytes): ").encode()
         if len(key) not in [16, 24, 32]:
             print("\nInvalid key length! Key must be 16, 24, or 32 bytes long.")
             continue
         if choice == "encrypt":
-            plaintext = input("\nEnter plaintext for AES encryption: ")
+            plaintext = input("Enter plaintext for AES encryption: ")
             ciphertext = encrypt(key, plaintext)
             if ciphertext:
                 print("\nEncrypted:", b64encode(ciphertext).decode())
         elif choice == "decrypt":
-            encrypted_text = b64decode(input("\nEnter ciphertext for AES decryption: "))
+            encrypted_text = b64decode(input("Enter ciphertext for AES decryption: "))
             decrypted_text = decrypt(key, encrypted_text)
             if decrypted_text:
                 print("\nDecrypted:", decrypted_text)

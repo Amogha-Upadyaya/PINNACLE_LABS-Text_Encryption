@@ -14,7 +14,7 @@ def main_menu():
         elif algorithm == "RSA":
             rsa_menu()
         else:
-            print("Invalid algorithm")
+            print("\nInvalid algorithm")
 
 if __name__ == "__main__":
     main_menu()
