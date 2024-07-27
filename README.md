@@ -67,7 +67,7 @@ Choose algorithm (AES/DES/RSA/quit):
 ## RSA Encryption
 1. Select `RSA` from the main menu
 2. Choose the operation (`generate_keys`, `encrypt` or `decrypt`):
-   ```bash
+   ```text
    Choose operation for RSA (generate_keys/encrypt/decrypt/quit):
    ```
 3. For key generation, the keys will be saved to `rsa_private_key.pem` and `rsa_public_key.pem`.
