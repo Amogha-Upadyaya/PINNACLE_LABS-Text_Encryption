@@ -6,6 +6,7 @@ def main_menu():
     while True:
         algorithm = input("\nChoose algorithm (AES/DES/RSA/quit): ").strip().upper()
         if algorithm == "QUIT":
+            print("Exiting...")
             break
         elif algorithm == "AES":
             aes_menu()
