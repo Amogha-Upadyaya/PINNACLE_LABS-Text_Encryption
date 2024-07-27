@@ -16,36 +16,36 @@ Create a cybersecurity project that encrypts text using different algorithms lik
 
 # Installation
 1. Clone the repository:
-   ```bash
+   ```text
    git clone https://github.com/your-username/text-encryption-tool.git
    cd text-encryption-tool
    ```
 2. Install the required library:
-   ```bash
+   ```text
    pip install pycryptodome
    ```
 
 # Usage
 ## Running the Tool
 To start the tool, run the main.py file:
-```bash
+```text
 python main.py
 ```
 
 ## Main Menu
 After running the tool, you will be presented with the main menu where you can choose the desired encryption algorithm:
-```bash
+```text
 Choose algorithm (AES/DES/RSA/quit): 
 ```
 
 ## AES Encryption
 1. Select `AES` from the main menu.
 2. Choose the operation (`encrypt` or `decrypt`):
-   ```bash
+   ```text
    Choose operation for AES (encrypt/decrypt/quit):
    ```
 3. Enter the AES key (16/24/32 bytes):
-   ```bash
+   ```text
    Enter AES key (16/24/32 bytes):
    ```
 4. For encryption, enter the plaintext to be encrypted.
@@ -54,11 +54,11 @@ Choose algorithm (AES/DES/RSA/quit):
 ## DES Encryption
 1. Select `DES` from the main menu.
 2. Choose the operation (`encrypt` or `decrypt`):
-   ```bash
+   ```text
    Choose operation for DES (encrypt/decrypt/quit):
    ```
 3. Enter the DES key (8 bytes):
-   ```bash
+   ```text
    Enter DES key (8 bytes):
    ```
 4. For encryption, enter the plaintext to be encrypted.
@@ -76,7 +76,7 @@ For decryption, ensure the private key file (`rsa_private_key.pem`) is present a
 
 # Example
 ## AES Encryption Example
-```bash
+```text
 Choose algorithm (AES/DES/RSA/quit): AES
 Choose operation for AES (encrypt/decrypt/quit): encrypt
 Enter AES key (16/24/32 bytes): thisisaverysecretkey!
@@ -85,7 +85,7 @@ Encrypted: 4bSyWctuHrZl1GoSyVIdWUNL9/RQcspe
 ```
 
 ## DES Encryption Example
-```bash
+```text
 Choose algorithm (AES/DES/RSA/quit): DES
 Choose operation for DES (encrypt/decrypt/quit): encrypt
 Enter DES key (8 bytes): deskey12
@@ -94,7 +94,7 @@ Encrypted: Zx8cDsdVqe5dKWeFby4YXtI=
 ```
 
 ## RSA Encryption Example
-```bash
+```text
 Choose algorithm (AES/DES/RSA/quit): RSA
 Choose operation for RSA (generate_keys/encrypt/decrypt/quit): generate_keys
 Keys have been saved to 'rsa_private_key.pem' and 'rsa_public_key.pem'
